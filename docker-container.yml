@@ -1,6 +1,6 @@
 ---
 - name: Build and Start Docker Container
-  hosts: DockerHost
+  hosts: localhost
   connection: local
   become: yes
   
