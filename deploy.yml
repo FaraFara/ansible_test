@@ -1,0 +1,26 @@
+---
+- name: Configure Nginx and Deploy simple page
+  hosts: container
+  tasks:
+  
+#  - name: "copy source code"
+#    copy: 
+#        src: "./Dockerfile"
+#        dest: "~/" 
+  - name: Ping status
+    ping:
+
+  - name: Install & Start Nginx
+    apk:
+      name:  nginx
+  - copy:
+     src: "default.conf"
+     dest: "/etc/nginx/http.d/"
+  - service:
+     name: nginx
+     state: started
+     enabled: yes
+
+  - template:
+     src: "index.j2"
+     dest: "/var/www/localhost/htdocs/index.html"

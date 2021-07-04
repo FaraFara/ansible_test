@@ -1,0 +1,15 @@
+---
+- name: Test Nginx on Local
+  hosts: localhost
+  connection: local
+  
+  tasks:
+  
+  - name: Ping my servers
+    ping:
+  - name: Start Docker container
+    community.docker.docker_container:
+      container_default_behavior: compatibility
+      name: server
+      image: server
+      published_ports: 127.0.0.1:1234:22
