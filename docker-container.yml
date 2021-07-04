@@ -2,6 +2,7 @@
 - name: Build and Start Docker Container
   hosts: DockerHost
   connection: local
+  become: yes
   
   vars:
   - docker_image_name: "ssh_os"

@@ -1,6 +1,7 @@
 ---
 - name: Configure Nginx and Deploy simple page
   hosts: container
+  become: yes
   tasks:
   
 #  - name: "copy source code"
