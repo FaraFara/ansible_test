@@ -1,7 +1,6 @@
 ---
 - name: Build and Start Docker Container
   hosts: localhost
-  connection: local
   become: yes
   
   vars:
@@ -47,14 +46,10 @@
 #      line: "{{docker_info.ansible_facts.docker_container.NetworkSettings.IPAddress}}"
 #      state: present
 
-#  - ansible.builtin.group_by:
-#     key: 'container'
-     
   - name: Add Docker host to group container
     add_host:
       name: "{{docker_info.ansible_facts.docker_container.NetworkSettings.IPAddress}}"
       groups: container
-      inventory_dir: '{{ inventory_dir }}'
 
   - debug:
         var: groups['container']
@@ -66,7 +61,7 @@
 - name: Status container
   hosts: container
   tasks:
-#   - ping:
+   - ping:
    
    - name: Install & Start Nginx
      apk:

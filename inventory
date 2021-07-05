@@ -1,6 +1,7 @@
-localhost
+localhost ansible_connection=local
 
 [container]
+172.17.0.2
 
 [container:vars]
 ansible_ssh_user=root
