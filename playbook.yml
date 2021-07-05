@@ -63,7 +63,7 @@
 
 
 - name: Status container
-  hosts: "{{ hostvars['localhost']['container_ip']}}"
+  hosts: "172.17.0.2"
   tasks:
    - ping:
    
