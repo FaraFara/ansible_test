@@ -53,13 +53,17 @@
 
   - debug:
         var: groups['container']
-
   - file:
      dest: 'containerkey'
      mode: '600'
 
+  - set_fact: container_ip="{{docker_info.ansible_facts.docker_container.NetworkSettings.IPAddress}}"
+  - debug:
+        var: container_ip
+
+
 - name: Status container
-  hosts: container
+  hosts: "{{ hostvars['localhost']['container_ip']}}"
   tasks:
    - ping:
    
