@@ -27,7 +27,7 @@
         path: "./"
        state: present
        source: build
-  
+
   - name: Start Docker container
     docker_container:
       container_default_behavior: compatibility
@@ -61,23 +61,23 @@
   - debug:
         var: container_ip
 
-
 - name: Status container
   hosts: "172.17.0.2"
+
   tasks:
-   - ping:
-   
-   - name: Install & Start Nginx
-     apk:
-      name:  nginx
-   - copy:
+  - ping:
+
+  - name: Install & Start Nginx
+    apk:
+      name: nginx
+  - copy:
       src: "default.conf"
       dest: "/etc/nginx/http.d/"
-   - service:
+  - service:
       name: nginx
       state: started
       enabled: yes
 
-   - template:
+  - template:
       src: "index.j2"
       dest: "/var/www/localhost/htdocs/index.html"
