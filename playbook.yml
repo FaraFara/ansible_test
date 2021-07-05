@@ -27,10 +27,10 @@
         - 127.0.0.1:8888:80
     register: docker_info
 
-  - name: Add Docker host to group container
-    add_host:
-      name: "{{docker_info.ansible_facts.docker_container.NetworkSettings.IPAddress}}"
-      groups: container
+#  - name: Add Docker host to group container
+#    add_host:
+#      hostname: '{{docker_info.ansible_facts.docker_container.NetworkSettings.IPAddress}}'
+#      groups: container
 
   - file:
      dest: 'containerkey'
@@ -48,7 +48,7 @@
     copy:
       src: "default.conf"
       dest: "/etc/nginx/http.d/"
-  - name: Start Ngenx service
+  - name: Start Nginx service
     service:
       name: nginx
       state: started
