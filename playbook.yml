@@ -52,7 +52,7 @@
 
   - file:
      dest: "containerkey"
-     mode: 600
+     mode: "600"
 
 - name: Status container
   hosts: container
