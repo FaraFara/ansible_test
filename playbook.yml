@@ -50,6 +50,10 @@
       name: "{{docker_info.ansible_facts.docker_container.NetworkSettings.IPAddress}}"
       groups: container
 
+  - file:
+     dest: "containerkey"
+     mode: 600
+
 - name: Status container
   hosts: container
   tasks:
