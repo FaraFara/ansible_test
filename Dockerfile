@@ -4,15 +4,17 @@ FROM panubo/sshd
 
 #FROM alpine
 
+
 ENV SSH_ENABLE_ROOT=true
 #ENV SSH_ENABLE_PASSWORD_AUTH=true 
 #ENV SSH_ENABLE_ROOT_PASSWORD_AUTH=true
 
-RUN apk update; apk add openrc python3
+RUN apk update; apk add openrc python3 sudo
 RUN openrc
 RUN touch /run/openrc/softlevel
 
 USER root
+#RUN chpasswd <<< "root:root"
 COPY containerkey.pub /root/.ssh/authorized_keys
 
 # systemctl enable sshd 

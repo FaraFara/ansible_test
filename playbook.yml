@@ -1,6 +1,8 @@
 ---
 - name: Build and Start Docker Container
-  hosts: all
+  hosts: localhost
+  connection: local
+  become: yes
   
   vars:
   - docker_image_name: "ssh_os"
@@ -10,13 +12,13 @@
   
   tasks:
 
-  - copy:
-     src: "Dockerfile"
-     dest: "./BuildImage/"
+#  - copy:
+#     src: "Dockerfile"
+#     dest: "./BuildImage/"
 
-  - copy:
-     src: "containerkey.pub"
-     dest: "./BuildImage/"
+#  - copy:
+#     src: "containerkey.pub"
+#     dest: "./BuildImage/"
 
   - name: "Build docker image from Dockerfile"
     docker_image:
@@ -58,8 +60,8 @@
         var: groups['container']
 
   - file:
-     dest: "containerkey"
-     mode: "600"
+     dest: 'containerkey'
+     mode: '600'
 
 - name: Status container
   hosts: container
